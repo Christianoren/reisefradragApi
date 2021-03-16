@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using reisefradragApi.Services;
 
 namespace reisefradragApi.Controllers
 {
@@ -11,10 +12,16 @@ namespace reisefradragApi.Controllers
     [ApiController]
     public class ReisefradragController : ControllerBase
     {
+        private readonly ReisefradragService _reisefradragService;
+        public ReisefradragController(ReisefradragService reisefradragService)
+        {
+            _reisefradragService = reisefradragService;
+        }
+
         [HttpGet]
         public string ReisefradragRequest()
         {
-            return "Hello world!";
+            return _reisefradragService.Reisefradrag();
         }
     }
 }
