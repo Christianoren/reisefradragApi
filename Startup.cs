@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using reisefradragApi.Services;
 
 namespace reisefradragApi
 {
@@ -28,6 +29,7 @@ namespace reisefradragApi
         {
 
             services.AddControllers();
+            services.AddTransient<ReisefradragService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
