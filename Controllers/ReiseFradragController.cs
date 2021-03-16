@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using reisefradragApi.Services;
@@ -19,15 +20,14 @@ namespace reisefradragApi.Controllers
             _reisefradragService = reisefradragService;
         }
 
-        [HttpGet]
-        // public ReisefradragResult ReisefradragRequest([FromBody] ReisefradragRequest rfr)
-        public ReisefradragResult ReisefradragRequest()
+        [HttpPost]
+        public ReisefradragResult ReisefradragRequest([FromBody] ReisefradragRequest rfr)
         {
             //TODO: Logging?
             //TODO: validate request
             //TODO: calculate deduction
             //TODO: return result
-            return _reisefradragService.Reisefradrag();
+            return _reisefradragService.Reisefradrag(rfr);
         }
     }
 }
