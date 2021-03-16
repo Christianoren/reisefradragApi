@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace reisefradragApi.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ReiseFradragController : ControllerBase
+    public class ReisefradragController : ControllerBase
     {
         [HttpGet]
-        public string GetReisefradrag()
+        public string ReisefradragRequest()
         {
             return "Hello world!";
         }
