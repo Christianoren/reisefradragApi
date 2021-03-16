@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using reisefradragApi.Services;
+using reisefradragApi.Models;
 
 namespace reisefradragApi.Controllers
 {
@@ -19,9 +20,12 @@ namespace reisefradragApi.Controllers
         }
 
         [HttpGet]
-        public string ReisefradragRequest()
+        public async Task<IActionResult> ReisefradragRequest([FromBody] ReisefradragRequest rfr)
         {
-            return _reisefradragService.Reisefradrag();
+            //TODO: Logging?
+            //TODO: validate request
+            //TODO: calculate deduction
+            //TODO: return result
         }
     }
 }
