@@ -1,11 +1,13 @@
+using reisefradragApi.Models;
 namespace reisefradragApi.Services
 {
     //Service..
     public class ReisefradragService
     {
-        public string Reisefradrag()
+        public ReisefradragResult Reisefradrag()
         {
-            return "Reisefradrag data";
+            var result = new ReisefradragResult { Reisefradrag = 1337 };
+            return result;
         }
     }
 }
