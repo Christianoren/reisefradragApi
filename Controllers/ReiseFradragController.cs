@@ -20,12 +20,14 @@ namespace reisefradragApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ReisefradragRequest([FromBody] ReisefradragRequest rfr)
+        // public ReisefradragResult ReisefradragRequest([FromBody] ReisefradragRequest rfr)
+        public ReisefradragResult ReisefradragRequest()
         {
             //TODO: Logging?
             //TODO: validate request
             //TODO: calculate deduction
             //TODO: return result
+            return _reisefradragService.Reisefradrag();
         }
     }
 }
