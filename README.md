@@ -5,16 +5,20 @@
 Dette er et WebApi som tar inn reiseinformasjon som JSON og returnerer beregnet reisefradrag som JSON.
 
 Eksempel på input-data er:
+```
 {
 	"arbeidsreiser":[{"km":91,"antall":180},{"km":378,"antall":4}],
 	"besoeksreiser":[{"km":580,"antall":4}],
 	"utgifterBomFergeEtc":4850
 }
+```
 
 Og svaret vil være på følgende format:
+```
 {
 	"reisefradrag":13168
 }
+```
 
 ## Forretningslogikk
 
