@@ -9,11 +9,11 @@ namespace reisefradragApi.Validation
         {
             RuleFor(x => x.UtgifterBomFergeEtc)
                 .NotEmpty()
-                .WithMessage($"{nameof(ReisefradragRequest.UtgifterBomFergeEtc)} kan ikke være tom.");
+                .WithMessage($"{nameof(ReisefradragRequest.UtgifterBomFergeEtc)}, kan ikke være tom.");
 
             RuleFor(x => x.UtgifterBomFergeEtc)
                 .GreaterThan(0)
-                .WithMessage($"{nameof(ReisefradragRequest.UtgifterBomFergeEtc)} kan ikke være mindre enn 0.");
+                .WithMessage($"{nameof(ReisefradragRequest.UtgifterBomFergeEtc)}, kan ikke være mindre enn 0.");
 
             RuleForEach(x => x.Arbeidsreiser)
                 .SetValidator(new ArbeidsreiseValidator());
@@ -29,15 +29,19 @@ namespace reisefradragApi.Validation
         {
             RuleFor(x => x.Antall)
                 .NotEmpty()
+                .WithMessage(
+                    $"Arbeidsreise: {nameof(ReisefradragRequest.Arbeidsreise.Antall)}, kan ikke være tom.")
                 .GreaterThanOrEqualTo(1)
                 .WithMessage(
-                    $"{nameof(ReisefradragRequest.Arbeidsreise.Antall)} kan ikke være tom eller mindre enn 1.");
+                    $"Arbeidsreise: {nameof(ReisefradragRequest.Arbeidsreise.Antall)}, kan ikke være mindre enn 1.");
 
             RuleFor(x => x.Km)
                 .NotEmpty()
+                .WithMessage(
+                    $"Arbeidsreise: {nameof(ReisefradragRequest.Arbeidsreise.Km)}, kan ikke være tom.")
                 .GreaterThanOrEqualTo(1)
                 .WithMessage(
-                    $"{nameof(ReisefradragRequest.Arbeidsreise.Km)} kan ikke være tom eller mindre enn 1.");
+                    $"Arbeidsreise: {nameof(ReisefradragRequest.Arbeidsreise.Km)}, kan ikke være mindre enn 1.");
         }
     }
 
@@ -47,15 +51,19 @@ namespace reisefradragApi.Validation
         {
             RuleFor(x => x.Antall)
                 .NotEmpty()
+                .WithMessage(
+                    $"Arbeidsreise: {nameof(ReisefradragRequest.Besoeksreise.Antall)}, kan ikke være tom.")
                 .GreaterThanOrEqualTo(1)
                 .WithMessage(
-                    $"{nameof(ReisefradragRequest.Besoeksreise.Antall)} kan ikke være tom eller mindre enn 1.");
+                    $"Besøksreise: {nameof(ReisefradragRequest.Besoeksreise.Antall)}, kan ikke være mindre enn 1.");
 
             RuleFor(x => x.Km)
                 .NotEmpty()
+                .WithMessage(
+                    $"Arbeidsreise: {nameof(ReisefradragRequest.Besoeksreise.Km)}, kan ikke være tom.")
                 .GreaterThanOrEqualTo(1)
                 .WithMessage(
-                    $"{nameof(ReisefradragRequest.Besoeksreise.Km)} kan ikke være tom eller mindre enn 1.");
+                    $"Besøksreise: {nameof(ReisefradragRequest.Besoeksreise.Km)}, kan ikke være mindre enn 1.");
         }
     }
 }
