@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using reisefradragApi.Services;
@@ -15,6 +14,7 @@ namespace reisefradragApi.Controllers
     public class ReisefradragController : ControllerBase
     {
         private readonly ReisefradragService _reisefradragService;
+
         public ReisefradragController(ReisefradragService reisefradragService)
         {
             _reisefradragService = reisefradragService;

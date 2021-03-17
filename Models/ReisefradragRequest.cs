@@ -10,14 +10,14 @@ namespace reisefradragApi.Models
         
         public class Arbeidsreise
         {
-        public int Km { get; set; }
-        public int Antall { get; set; }
+            public int Km { get; set; }
+            public int Antall { get; set; }
         }
 
         public class Besoeksreise
         {
-        public int Km { get; set; }
-        public int Antall { get; set; }
+            public int Km { get; set; }
+            public int Antall { get; set; }
         }
     }
 }
