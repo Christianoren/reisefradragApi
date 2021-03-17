@@ -6,37 +6,53 @@ namespace reisefradragApi.Services
     {
         public ReisefradragResult Reisefradrag(ReisefradragRequest rfr)
         {
-            //TODO: calculate deduction
-            //Norsk engelsk?
-            const double deductionRateOne = 1.5;
-            const double deductionRateTwo = 0.7;
+            const double fradragSatsEn = 1.5;
+            const double fradragSatsTo = 0.7;
+            const int oevreGrense = 75000;
+            const int nedreGrense = 50000;
             const int minsteFradragBomFerge = 3400;
+            const int egenandel = 22000;
 
-            int fradragBomFergeEtc = 0;
-            int kmSum = 0;
+            int kmTotalt = 0;
+            double reisefradragSum = 0;
 
             foreach (var arbeidsreise in rfr.Arbeidsreiser)
             {
-                var sum = arbeidsreise.Km * arbeidsreise.Antall;
-                kmSum += sum;
+                var antallKmPerArbeidsreise = arbeidsreise.Km * arbeidsreise.Antall;
+                kmTotalt += antallKmPerArbeidsreise;
             }
 
             foreach (var besoeksreiser in rfr.Besoeksreiser)
             {
-                var sum = besoeksreiser.Km * besoeksreiser.Antall;
-                kmSum += sum;
+                var kmPerBesoeksreise = besoeksreiser.Km * besoeksreiser.Antall;
+                kmTotalt += kmPerBesoeksreise;
             }
 
             if (rfr.UtgifterBomFergeEtc > minsteFradragBomFerge)
             {
-                fradragBomFergeEtc += rfr.UtgifterBomFergeEtc;
+                reisefradragSum += rfr.UtgifterBomFergeEtc;
             }
 
+            if (kmTotalt > oevreGrense)
+            {
+                reisefradragSum += 50000 * fradragSatsEn;
+                reisefradragSum += 25000 * fradragSatsTo;
+            }
 
+            if (kmTotalt > nedreGrense && kmTotalt <= oevreGrense)
+            {
+                reisefradragSum += 50000 * fradragSatsEn;
+                reisefradragSum += (kmTotalt - 50000) * fradragSatsTo;
+            }
 
-            // For testing
-            var result = new ReisefradragResult { Reisefradrag = 1337 };
-            return result;
+            if (kmTotalt <= nedreGrense && kmTotalt > 0)
+            {
+                reisefradragSum += kmTotalt * fradragSatsEn;
+            }
+
+            reisefradragSum -= egenandel;
+
+            return new ReisefradragResult { Reisefradrag = reisefradragSum };
         }
     }
 }

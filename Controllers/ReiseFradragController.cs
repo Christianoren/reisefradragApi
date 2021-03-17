@@ -26,7 +26,6 @@ namespace reisefradragApi.Controllers
             //TODO: Logging?
             //TODO: validate request
 
-            //TODO: return result
             return _reisefradragService.Reisefradrag(rfr);
         }
     }
