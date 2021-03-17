@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using reisefradragApi.Services;
 using reisefradragApi.Models;
+using reisefradragApi.Validation;
 
 namespace reisefradragApi.Controllers
 {
@@ -25,6 +26,8 @@ namespace reisefradragApi.Controllers
         {
             //TODO: Logging?
             //TODO: validate request
+            var validator = new ReisefradragValidator();
+            var validatorResult = validator.Validate(rfr);
 
             return _reisefradragService.Reisefradrag(rfr);
         }
