@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using reisefradragApi.Services;
 using reisefradragApi.Models;
 using reisefradragApi.Validation;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace reisefradragApi.Controllers
 {
@@ -22,14 +24,21 @@ namespace reisefradragApi.Controllers
         }
 
         [HttpPost]
-        public ReisefradragResult ReisefradragRequest([FromBody] ReisefradragRequest rfr)
+        public async Task<IActionResult> ReisefradragRequest([FromBody] ReisefradragRequest rfr)
         {
             //TODO: Logging?
-            //TODO: validate request
-            var validator = new ReisefradragValidator();
-            var validatorResult = validator.Validate(rfr);
+            ReisefradragValidator validator = new ReisefradragValidator();
+            ValidationResult validationResult = validator.Validate(rfr);
 
-            return _reisefradragService.Reisefradrag(rfr);
+            if (!validationResult.IsValid)
+            {
+                var allErrorMessages = validationResult.ToString(" ~ ");
+                return BadRequest(allErrorMessages);
+            }
+
+            var reisefradragResult = _reisefradragService.Reisefradrag(rfr);
+
+            return Ok(reisefradragResult);
         }
     }
 }
