@@ -26,7 +26,6 @@ namespace reisefradragApi.Controllers
         [HttpPost]
         public async Task<IActionResult> ReisefradragRequest([FromBody] ReisefradragRequest rfr)
         {
-            //TODO: Logging?
             ReisefradragValidator validator = new ReisefradragValidator();
             ValidationResult validationResult = validator.Validate(rfr);
 
