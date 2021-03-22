@@ -6,12 +6,12 @@ namespace reisefradragApi.Services
     {
         public ReisefradragResult Reisefradrag(ReisefradragRequest rfr)
         {
-            const double fradragSatsEn = 1.5;
-            const double fradragSatsTo = 0.7;
-            const int oevreGrense = 75000;
-            const int nedreGrense = 50000;
-            const int minsteFradragBomFerge = 3400;
-            const int egenandel = 22000;
+            const double FradragSatsEn = 1.5;
+            const double FradragSatsTo = 0.7;
+            const int OevreGrense = 75000;
+            const int NedreGrense = 50000;
+            const int MinsteFradragBomFerge = 3400;
+            const int Egenandel = 22000;
 
             int kmTotalt = 0;
             double reisefradragSum = 0;
@@ -28,29 +28,29 @@ namespace reisefradragApi.Services
                 kmTotalt += kmPerBesoeksreise;
             }
 
-            if (rfr.UtgifterBomFergeEtc > minsteFradragBomFerge)
+            if (rfr.UtgifterBomFergeEtc > MinsteFradragBomFerge)
             {
                 reisefradragSum += rfr.UtgifterBomFergeEtc;
             }
 
-            if (kmTotalt > oevreGrense)
+            if (kmTotalt > OevreGrense)
             {
-                reisefradragSum += 50000 * fradragSatsEn;
-                reisefradragSum += 25000 * fradragSatsTo;
+                reisefradragSum += 50000 * FradragSatsEn;
+                reisefradragSum += 25000 * FradragSatsTo;
             }
 
-            if (kmTotalt > nedreGrense && kmTotalt <= oevreGrense)
+            if (kmTotalt > NedreGrense && kmTotalt <= OevreGrense)
             {
-                reisefradragSum += 50000 * fradragSatsEn;
-                reisefradragSum += (kmTotalt - 50000) * fradragSatsTo;
+                reisefradragSum += 50000 * FradragSatsEn;
+                reisefradragSum += (kmTotalt - 50000) * FradragSatsTo;
             }
 
-            if (kmTotalt <= nedreGrense && kmTotalt > 0)
+            if (kmTotalt <= NedreGrense && kmTotalt > 0)
             {
-                reisefradragSum += kmTotalt * fradragSatsEn;
+                reisefradragSum += kmTotalt * FradragSatsEn;
             }
 
-            reisefradragSum -= egenandel;
+            reisefradragSum -= Egenandel;
 
             return new ReisefradragResult { Reisefradrag = reisefradragSum };
         }
